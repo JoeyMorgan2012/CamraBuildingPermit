@@ -49,10 +49,10 @@ namespace CamraBuildingPermit
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            DialogResult result = folderBrowserDialog1.ShowDialog(this);
+            DialogResult result = pictureLocationBrowser.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                txtPicturePath.Text = folderBrowserDialog1.SelectedPath;
+                txtPicturePath.Text = pictureLocationBrowser.SelectedPath;
 
             }
         }
@@ -61,13 +61,13 @@ namespace CamraBuildingPermit
         {
 
 
-            string iptx = txtIPAddress.Text.ToString().Trim();
+            //string iptx = txtIPAddress.Text.ToString().Trim();
 
-            string pictxt = txtPicturePath.Text.ToString().Trim();
+            //string pictxt = txtPicturePath.Text.ToString().Trim();
+			
+            //Properties.Settings.Default.IPAddress = iptx;
 
-            Properties.Settings.Default.IPAddress = iptx;
-
-            Properties.Settings.Default.PicturePath = pictxt;
+            //Properties.Settings.Default.PicturePath = pictxt;
 
             Properties.Settings.Default.Save();
 

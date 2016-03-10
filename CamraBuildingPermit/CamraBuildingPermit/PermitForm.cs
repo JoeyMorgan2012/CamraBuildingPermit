@@ -53,11 +53,11 @@ namespace CamraBuildingPermit
             LocalityLabel.Text = MainForm.FCLocName;
 
             CheckFile();
-            Refresh();
+            RefreshForm();
 
         }
 
-        public void Refresh()
+        public void RefreshForm()
         {
             record = 0;
             card = 0;
@@ -335,14 +335,14 @@ namespace CamraBuildingPermit
         {
             UpDateRecord();
 
-            Refresh();
+            RefreshForm();
         }
 
         private void dleteBtn_Click(object sender, EventArgs e)
         {
             DeleteRecord();
 
-            Refresh();
+            RefreshForm();
         }
 
         private void txtEstCost_Leave(object sender, EventArgs e)
@@ -406,7 +406,7 @@ namespace CamraBuildingPermit
 
         private void txtRecord_Click(object sender, EventArgs e)
         {
-            Refresh();
+            RefreshForm();
         }
-    }
+	}
 }

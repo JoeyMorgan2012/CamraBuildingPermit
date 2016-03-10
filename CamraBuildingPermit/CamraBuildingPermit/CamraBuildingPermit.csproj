@@ -45,17 +45,15 @@
       <HintPath>..\..\packages\FluentData.3.0.1.0\lib\FluentData.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="IBM.Data.DB2.EntityFramework, Version=10.5.5.6, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.IBM.DB2.6.0.3\lib\net40\IBM.Data.DB2.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="linq2db, Version=1.0.7.1, Culture=neutral, PublicKeyToken=f19f8aed7feff67e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\linq2db.1.0.7.1\lib\net45\linq2db.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +77,10 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\BuildingPermit.cs" />
+    <Compile Include="Repository\IMasterRecord.cs" />
+    <Compile Include="Repository\IBuildingPermit.cs" />
+    <Compile Include="Models\MasterRecord.cs" />
     <Compile Include="PermitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +89,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\PermitRepository.cs" />
     <EmbeddedResource Include="FormConfigure.resx">
       <DependentUpon>FormConfigure.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,29 +107,8 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="LinqToDB.Templates\!ReadMe.LinqToDB.md" />
-    <None Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
-    <None Include="LinqToDB.Templates\DataModel.ttinclude" />
-    <None Include="LinqToDB.Templates\EditableObject.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Access.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.DB2.Tools.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.DB2.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Firebird.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Informix.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.MySql.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Oracle.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.PostgreSQL.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.SqlCe.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.SQLite.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.SqlServer.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Sybase.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Tools.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.ttinclude" />
-    <None Include="LinqToDB.Templates\NotifyPropertyChanged.ttinclude" />
-    <None Include="LinqToDB.Templates\PluralizationService.ttinclude" />
-    <None Include="LinqToDB.Templates\T4Model.ttinclude" />
-    <None Include="LinqToDB.Templates\Validation.ttinclude" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,9 +119,101 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\VisualStudioImageLibrary2015_Concept.pdf" />
+    <None Include="Resources\VisualStudioImageLibrary2015_Icons.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DatabaseOffline_16x.png" />
+    <None Include="Resources\Database_64x.png" />
+    <None Include="Resources\Database_48x.png" />
+    <None Include="Resources\database_32xSM.png" />
+    <None Include="Resources\database_32xMD.png" />
+    <None Include="Resources\Database_32x.png" />
+    <None Include="Resources\database_16xSM.png" />
+    <None Include="Resources\database_16xMD.png" />
+    <None Include="Resources\Database_16x.png" />
+    <None Include="Resources\Database_8x_16x.png" />
+    <None Include="Resources\Database_8x.png" />
+    <None Include="Resources\Database_256x.png" />
+    <None Include="Resources\ColumnError_32x.png" />
+    <None Include="Resources\GeoLocation_256x.png" />
+    <None Include="Resources\GeoLocation_128x.png" />
+    <None Include="Resources\GeoLocation_64x.png" />
+    <None Include="Resources\GeoLocation_40x.png" />
+    <None Include="Resources\GeoLocation_32x.png" />
+    <None Include="Resources\GeoLocation_24x.png" />
+    <None Include="Resources\GeoLocation_20x.png" />
+    <None Include="Resources\GeoLocation_16x.png" />
+    <None Include="Resources\GeoLocation.ico" />
+    <None Include="Resources\SearchStatusBar1_16x.png" />
+    <None Include="Resources\Search_glyph71GrayNoHalo_16x.png" />
+    <None Include="Resources\Search_256x.png" />
+    <None Include="Resources\Search_64x.png" />
+    <None Include="Resources\Search_48x.png" />
+    <None Include="Resources\Search_32x.png" />
+    <None Include="Resources\Search_16xSM.png" />
+    <None Include="Resources\Search_16xMD.png" />
+    <None Include="Resources\Search_16x.png" />
+    <None Include="Resources\Search_12x.png" />
+    <None Include="Resources\Monaco_Search_32x.png" />
+    <None Include="Resources\F12_Search_lightGrey_28x.png" />
+    <None Include="Resources\F12_Search_28x.png" />
+    <None Include="Resources\VSO_Search_whiteNoHalo_16x.png" />
+    <None Include="Resources\VSO_Search_16x.png" />
+    <None Include="Resources\VSO_Search_12x_16x.png" />
+    <None Include="Resources\SearchStatusBar7_16x.png" />
+    <None Include="Resources\SearchStatusBar6_16x.png" />
+    <None Include="Resources\SearchStatusBar5_16x.png" />
+    <None Include="Resources\SearchStatusBar4_16x.png" />
+    <None Include="Resources\SearchStatusBar3_16x.png" />
+    <None Include="Resources\SearchStatusBar2_16x.png" />
+    <None Include="Resources\SearchMember_16x_32.bmp" />
+    <None Include="Resources\SearchMember_16x_24.bmp" />
+    <None Include="Resources\SearchMember_16x.png" />
+    <None Include="Resources\SearchMember.ico" />
+    <None Include="Resources\SearchMember_48x.png" />
+    <None Include="Resources\SearchMember_32x.png" />
+    <None Include="Resources\RedRectangle.png" />
+    <EmbeddedResource Include="Resources\BlueMultiRectangle.png" />
+    <None Include="Resources\Jump Point.png" />
+    <None Include="Resources\Draw.png" />
+    <None Include="Resources\GreenCheck.png" />
+    <None Include="Resources\GreenCheck.jpg" />
+    <None Include="Resources\GreenCheck.ico" />
+    <None Include="Resources\NoIcon.png" />
+    <None Include="Resources\ConnectionOk_64x.png" />
+    <None Include="Resources\ComputerSystem_128x.jpg" />
+    <None Include="Resources\CloudOK_32x.jpg" />
+    <None Include="Resources\DataBindingSource_64x.jpg" />
+    <None Include="Resources\DataBindingSource_64Teal.jpg" />
+    <None Include="Resources\GeoLocation_48x.png" />
+    <None Include="Resources\SearchMember_256x.png" />
+    <None Include="Resources\SearchMember_64x.png" />
+    <None Include="Resources\ColumnDetail_16x.png" />
+    <None Include="Resources\CSSearch_64x.png" />
+    <None Include="Resources\CSSearch_48x.png" />
+    <None Include="Resources\CSSearch_32x.png" />
+    <None Include="Resources\CSSearch_256x.png" />
+    <None Include="Resources\CSSearch_16x.png" />
+    <None Include="Resources\DimensionBrowserView_16x.png" />
+    <None Include="Resources\DimensionBrowserView_256x.png" />
+    <None Include="Resources\DimensionBrowserView_32x.png" />
+    <None Include="Resources\DimensionBrowserView_48x.png" />
+    <None Include="Resources\DimensionBrowserView_64x.png" />
+    <None Include="Resources\FindResults_16x.png" />
+    <None Include="Resources\ImageBrowser_16x.png" />
+    <None Include="Resources\ImageBrowser_24x.png" />
+    <None Include="Resources\ImageBrowser_256x.png" />
+    <None Include="Resources\ImageBrowser_32x.png" />
+    <None Include="Resources\ImageBrowser_48x.png" />
+    <None Include="Resources\ImageBrowser_64x.png" />
+    <None Include="Resources\LookupList_32x.png" />
+    <None Include="Resources\LookupList_16x.png" />
+    <None Include="Resources\LookupUser_16x.png" />
+    <None Include="Resources\LookupUser_32x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SWallTech\SWallTech\SWallTech.csproj">
@@ -148,8 +222,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LinqToDB.Templates\CopyMe.DB2.tt.txt" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,10 +3,25 @@
   <Profiles />
   <Settings>
     <Setting Name="IPAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">192.168.176.240</Value>
     </Setting>
     <Setting Name="PicturePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">P:\picture-files</Value>
+    </Setting>
+    <Setting Name="Locality" Type="System.String" Scope="User">
+      <Value Profile="(Default)">XXX</Value>
+    </Setting>
+    <Setting Name="UserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CAMRA2</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CAMRA2</Value>
+    </Setting>
+    <Setting Name="CurrentParcel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">00000 - 0</Value>
+    </Setting>
+    <Setting Name="Library" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NATIVE</Value>
     </Setting>
   </Settings>
 </SettingsFile>
